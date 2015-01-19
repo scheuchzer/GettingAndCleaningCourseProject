@@ -33,19 +33,12 @@ names(allMeasurementData) <- featureNames
 allSubjectData <- rbind(trainSubjectData, testSubjectData)
 allActivityData <- rbind(trainActivityData, testActivityData)
 allActivityLabelled <- merge(x = allActivityData, y = activityLabels)
-<<<<<<< HEAD
-=======
-#names(allActivityLabelled) <- c("activityId", "activity")
->>>>>>> 707ff679d0d8626fc76a271b675812ff1f6064c3
+
 # merge together
 allData <- cbind(allSubjectData, allActivityLabelled, allMeasurementData)
 # name the columns
 names(allData) <- c('subject', 'activityId', 'activity', names(allMeasurementData))
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 707ff679d0d8626fc76a271b675812ff1f6064c3
 # extract the measurements on the mean and standard deviation for each measurement. First columns are the subject and activity
 columnsOfInterest <- c(1, 3, grep("std|mean", names(allData)))
 stdAndMeanData <- allData[, columnsOfInterest]
@@ -56,7 +49,4 @@ grouped <- group_by_(stdAndMeanData, .dots=c('subject','activity'))
 meansBySubjectAndActivity <- grouped %>% summarise_each(funs(mean)) %>% arrange(subject, activity)
 
 write.table(meansBySubjectAndActivity, file="tidyData.txt", row.name=FALSE)
-<<<<<<< HEAD
 
-=======
->>>>>>> 707ff679d0d8626fc76a271b675812ff1f6064c3
